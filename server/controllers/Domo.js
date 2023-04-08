@@ -10,9 +10,11 @@ const makerPage = async (req, res) => {
 
 // Function for creating a Domo
 const makeDomo = async (req, res) => {
-  // Checks if a name and age are present
-  if (!req.body.name || !req.body.age) {
-    return res.status(400).json({ error: 'Both Name and Age are Required!' });
+  console.log(req.body);
+
+  // Checks if a name, job, and age are present
+  if (!req.body.name || !req.body.age || !req.body.job) {
+    return res.status(400).json({ error: 'All Fields are Required!' });
   }
 
   // Checks if the age is a number
@@ -23,6 +25,7 @@ const makeDomo = async (req, res) => {
   const domoData = {
     name: req.body.name,
     age: req.body.age,
+    job: req.body.job,
     owner: req.session.account._id,
   };
 
@@ -30,7 +33,7 @@ const makeDomo = async (req, res) => {
   try {
     const newDomo = new Domo(domoData);
     newDomo.save();
-    return res.status(201).json({ name: newDomo.name, age: newDomo.age });
+    return res.status(201).json({ name: newDomo.name, age: newDomo.age, job: newDomo.job});
   } catch (err) {
     console.log(err);
     if (err.code === 11000) {
@@ -44,7 +47,7 @@ const makeDomo = async (req, res) => {
 const getDomos = async(req, res) => {
   try {
     const query = {owner: req.session.account._id};
-    const docs = await Domo.find(query).select('name age').lean().exec();
+    const docs = await Domo.find(query).select('name age job').lean().exec();
 
     return res.json({domos: docs});
   } catch (err) {

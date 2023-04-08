@@ -50,7 +50,7 @@ nav:nth-child(1) {
 .domoForm {
     border: 2px solid #338acc;
     height: 35px;
-    width: 700px;
+    width: 900px;
     margin-top:0px;
     padding-top:10px;
     background-color: #55acee;
@@ -60,14 +60,14 @@ nav:nth-child(1) {
 
 .domoForm label {
     display: inline-block;
-    width: 75px;
+    width: 50px;
     margin-left: 10px;
     font-size: 1.2em;
     float: left;
     color: white;
 }
 
-.domoForm input[type=text] {
+.domoForm input {
     float:left;
 }
 
@@ -253,6 +253,14 @@ h3.domoAge {
     width: 100px;
     font-weight: bold;
     padding-right: 40px;
+    font-size: 1.5em;
+}
+
+h3.domoJob {
+    float: left;
+    width: 200px;
+    font-weight: bold;
+    padding-left: 10em;
     font-size: 1.5em;
 }
 
