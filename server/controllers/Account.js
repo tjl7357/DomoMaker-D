@@ -6,8 +6,6 @@ const { Account } = models;
 // Main Page Functions
 const loginPage = (req, res) => res.render('login');
 
-const signupPage = (req, res) => res.render('signup');
-
 // Logout Function
 const logout = (req, res) => {
   req.session.destroy();
@@ -72,7 +70,6 @@ const signup = async (req, res) => {
 // Exports
 module.exports = {
   loginPage,
-  signupPage,
   logout,
   login,
   signup,

@@ -9,7 +9,6 @@ const router = (app) => {
   app.post('/login', mid.requiresSecure, mid.requiresLogout, controllers.Account.login);
 
   // Signup Routes
-  app.get('/signup', mid.requiresSecure, mid.requiresLogout, controllers.Account.signupPage);
   app.post('/signup', mid.requiresSecure, mid.requiresLogout, controllers.Account.signup);
 
   // Logout Routes
@@ -18,6 +17,9 @@ const router = (app) => {
   // Maker Routes
   app.get('/maker', mid.requiresLogin, controllers.Domo.makerPage);
   app.post('/maker', mid.requiresLogin, controllers.Domo.makeDomo);
+
+  // Get Domos
+  app.get('/getDomos', mid.requiresLogin, controllers.Domo.getDomos);
 
   // Default Route
   app.get('/', mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
