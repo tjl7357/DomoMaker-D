@@ -260,7 +260,7 @@ h3.domoJob {
     float: left;
     width: 200px;
     font-weight: bold;
-    padding-left: 10em;
+    padding-left: 9em;
     font-size: 1.5em;
 }
 
@@ -270,4 +270,29 @@ h3.domoJob {
 
 .domo:last-child {
     margin-bottom:10px;
+}
+
+.delete {
+    transition: background-color 0.4s ease;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 14px;
+    font-size: 1.2em;
+    width: 100px;
+    background-color: #2d9aff;
+    border-radius: 2px;
+    border-color: #1b8df7;
+    padding: 3px 0px;
+    color: white;
+    text-decoration: none;
+}
+
+.delete:link, .delete:visited, .delete:hover, .delete:active {
+    color: white;
+}
+
+.delete:hover {
+    transition: background-color 0.4s ease;
+    background-color: #338acc;
 }

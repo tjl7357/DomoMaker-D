@@ -64,6 +64,16 @@ const DomoList = (props) => {
                 <h3 className='domoName'>Name: {domo.name}</h3>
                 <h3 className='domoAge'>Age: {domo.age}</h3>
                 <h3 className='domoJob'>Job: {domo.job}</h3>
+                <button className='delete' type='button' onClick={async () => {
+                    const response = await fetch('/deleteDomo', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({id: domo._id}),
+                    });
+                    loadDomosFromServer();
+                }}>Delete</button>
             </div>
         );
     });
