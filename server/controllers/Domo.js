@@ -4,9 +4,7 @@ const models = require('../models');
 const { Domo } = models;
 
 // Renders the Page
-const makerPage = async (req, res) => {
-  return res.render('app');
-};
+const makerPage = async (req, res) => res.render('app');
 
 // Function for creating a Domo
 const makeDomo = async (req, res) => {
@@ -33,7 +31,9 @@ const makeDomo = async (req, res) => {
   try {
     const newDomo = new Domo(domoData);
     newDomo.save();
-    return res.status(201).json({ name: newDomo.name, age: newDomo.age, job: newDomo.job, id: newDomo.id});
+    return res.status(201).json({
+      name: newDomo.name, age: newDomo.age, job: newDomo.job, id: newDomo.id,
+    });
   } catch (err) {
     console.log(err);
     if (err.code === 11000) {
@@ -44,28 +44,28 @@ const makeDomo = async (req, res) => {
 };
 
 // Get Domos
-const getDomos = async(req, res) => {
+const getDomos = async (req, res) => {
   try {
-    const query = {owner: req.session.account._id};
+    const query = { owner: req.session.account._id };
     const docs = await Domo.find(query).select('name age job _id').lean().exec();
 
-    return res.json({domos: docs});
+    return res.json({ domos: docs });
   } catch (err) {
     console.log(err);
-    return res.status(500).json({error: 'Error Retrieving Domos!'});
+    return res.status(500).json({ error: 'Error Retrieving Domos!' });
   }
 };
 
-const deleteDomo = async(req, res) => {
-  try{
-    const query = {_id: req.body.id};
-    const doc = await Domo.findOneAndDelete(query).select('name').lean().exec();
-    return res.json({message: 'Successfully Deleted Domo'});
-  } catch (err){
+const deleteDomo = async (req, res) => {
+  try {
+    const query = { _id: req.body.id };
+    await Domo.findOneAndDelete(query).select('name').lean().exec();
+    return res.json({ message: 'Successfully Deleted Domo' });
+  } catch (err) {
     console.log(err);
-    return res.status(500).json({error: 'Error Deleting Domo!'});
+    return res.status(500).json({ error: 'Error Deleting Domo!' });
   }
-}
+};
 
 // Exports
 module.exports = {
